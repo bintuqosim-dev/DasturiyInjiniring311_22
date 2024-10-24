@@ -1,2 +1,2 @@
-# DasturiyInjiniring311_22
-Amaliyotlarni bajarish uchun git hub 311-22 gruppa
+# Dasturiy Injiniring 311-22
+Amaliyotlarni bajarish uchun github repo 311-22 gruppa
