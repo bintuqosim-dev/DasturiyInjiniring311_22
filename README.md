@@ -1,5 +1,8 @@
- /* Maqsadli tugunga kirish mumkin yoki yo'qligini qidirish uchun Javascript dasturi
- berilgan maksimal chuqurlikka ega manba.*/
+/* Graph Data Structure
+Mavzu: Iterativ chuqurlashtiruvchi qidiruv (IDS) yoki iterativ chuqurlashtiruvchi birinchi qidiruv (IDDFS)
+*/
+/* Maqsadli tugunga kirish mumkin yoki yo'qligini qidirish uchun Javascript dasturi
+berilgan maksimal chuqurlikka ega manba.*/
 
       // Grafik klassi qo'shnilik yordamida yo'naltirilgan grafikni ifodalaydi
       // ro'yxat ko'rinishi.
