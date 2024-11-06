@@ -1,0 +1,16 @@
+def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        for j in range(0, n-i-1):
+            if arr[j][1] > arr[j+1][1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+    return arr
+
+# Talabalar ro'yxati va ularning ballari
+students = [("Ali", 85), ("Bobur", 95), ("Davron", 75), ("Elyor", 90), ("Fayzulla", 80)]
+
+# Talabalarni ballariga qarab saralash
+sorted_students = bubble_sort(students)
+print("Saralangan talabalar ro'yxati:")
+for student in sorted_students:
+    print(student[0], ":", student[1])
