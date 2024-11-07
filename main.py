@@ -1,6 +1,5 @@
 from heapq import heappush, heappop
 
-#Graph
 class Solution:
     def mergeKLists(self, lists: list[ListNode]) -> ListNode:
         yordamchi = ListNode(0)
