@@ -2,7 +2,8 @@ class Graph {
     constructor(V) {
         this.V = V; // Grafikdagi tugunlar soni
         this.adj = new Array(V); // Har bir tugun uchun bo'sh ro'yhat yaratish
-        for (let i = 0; i < V; i++) this.adj[i] = []; // Har bir tugun uchun qo'shnilar ro'yxatini o'rnatish
+        for (let i = 0; i < V; i++) 
+        this.adj[i] = []; // Har bir tugun uchun qo'shnilar ro'yxatini o'rnatish
     }
     
     addEdge(v, w) {
@@ -14,7 +15,8 @@ class Graph {
     if (limit <= 0) return false; // Agar chuqurlik chegarasiga yetsak, qidirishni to'xtatamiz
     
     for (let i of this.adj[src].values()) {
-        if (this.DLS(i, target, limit - 1) == true) return true; // Qo'shnilarni chuqurlik chegarasi bilan rekursiv tekshirish
+        if (this.DLS(i, target, limit - 1) == true) 
+        return true; // Qo'shnilarni chuqurlik chegarasi bilan rekursiv tekshirish
     }
 
     return false; // Maqsad topilmadi
@@ -22,10 +24,11 @@ class Graph {
 
 IDDFS(src, target, max_depth) {
     for (let i = 0; i <= max_depth; i++) {
-        if (this.DLS(src, target, i) == true) return true; // Har bir chuqurlikda DLS chaqirish
+        if (this.DLS(src, target, i) == true) 
+        return true; // Har bir chuqurlikda DLS chaqirish
     }
     return false; // Maqsad topilmadi
-}
+}}
 g = new Graph(7);
 g.addEdge(0, 1);
 g.addEdge(0, 2);
