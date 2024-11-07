@@ -1,6 +1,6 @@
 from heapq import heappush, heappop
 
-
+#Graph
 class Solution:
     def mergeKLists(self, lists: list[ListNode]) -> ListNode:
         yordamchi = ListNode(0)
@@ -8,7 +8,7 @@ class Solution:
 
         ustuvorlik_navbati = []
 
-        for i, tugun in enumerate(lists):
+       for i, tugun in enumerate(lists):
             if tugun:
                 heappush(ustuvorlik_navbati, (tugun.val, i, tugun))
 
