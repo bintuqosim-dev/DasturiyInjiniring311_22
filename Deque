@@ -1,0 +1,33 @@
+Berilgan matn yoki sonni "palindrom" ekanligini tekshiring (matnni orqaga o‘qiganda ham bir xil bo‘lsa).
+from collections import deque
+
+class DequePalindromTekshiruv:
+    def __init__(x):
+        x.dq = deque()  
+    
+    def deque_ozgartirish(x, m):
+        for char in m:
+            x.dq.append(char)  
+        print(f"Deque elementlari kiritildi: {list(x.dq)}")
+    
+    def palindrommi(x):
+        while len(x.dq) > 1:
+            boshi = x.dq.popleft() 
+            oxiri = x.dq.pop()       
+            
+            if boshi != oxiri:
+                print("Matn yoki son palindrom emas.")
+                return False
+        
+        print("Matn yoki son palindrom.")
+        return True
+ 
+    def deque_korsat(x):
+        print("Deque elementlari:", list(x.dq))
+
+n = DequePalindromTekshiruv()
+
+m = input("Tekshirmoqchi bo'lgan matn yoki ro'yxatni kiriting : ")
+n.deque_ozgartirish(m)
+n.deque_korsat()
+n.palindrommi()
