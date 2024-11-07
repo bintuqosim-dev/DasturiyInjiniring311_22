@@ -1,0 +1,82 @@
+Queue Data Structure
+
+Find the first circular tour that visits all petrol pumps.
+
+Given information about N petrol pumps (say arr[]) that are present in a circular path. 
+The information consists of the distance of the next petrol pump from the current one 
+(in arr[i][1]) and the amount of petrol stored in that petrol pump (in arr[i][0]). 
+Consider a truck with infinite capacity that consumes 1 unit of petrol to travel 1 unit distance. 
+The task is to find the index of the first starting point such that the truck can visit all the petrol pumps and come back to that starting point.
+
+Note: Return -1 if no such tour exists.
+
+
+// Benzin quyish stansiyasi uchun class
+class benzinStansiyasi {
+    var benzin: Int        // mavjud benzin miqdori
+    var masofa: Int        // keyingi stansiyagacha masofa
+    
+    init(benzin: Int, masofa: Int) {
+        self.benzin = benzin
+        self.masofa = masofa
+    }
+}
+
+// Aylana  classi: Boshlanish indeksini aniqlash uchun asosiy algoritmni o‘z ichiga oladi
+class Aylana {
+    private var stansiyalar: [benzinStansiyasi]    // Benzin quyish stansiyalari ro‘yxati
+    
+    init(stansiyalar: [benzinStansiyasi]) {
+        self.stansiyalar = stansiyalar
+    }
+    
+    // Boshlanish indeksini topish usuli
+    func boshlanishIndeksiniTopish() -> Int {
+        var jamiBenzin = 0
+        var jamiMasofa = 0
+        var hozirgiBenzin = 0
+        var boshlanishIndeksi = 0
+        
+        for i in 0..<stansiyalar.count {
+            let benzin = stansiyalar[i].benzin
+            let masofa = stansiyalar[i].masofa
+            
+            // Umumiy benzin va masofani yangilaymiz
+            jamiBenzin += benzin
+            jamiMasofa += masofa
+            hozirgiBenzin += benzin - masofa
+            
+            // Agar benzin yetarli bo'lmasa, boshlanish indeksini o'zgartiramiz
+            if hozirgiBenzin < 0 {
+                boshlanishIndeksi = i + 1
+                hozirgiBenzin = 0
+            }
+        }
+        
+        // Agar umumiy benzin va masofa shartiga ko'ra yechim yo'q bo'lsa
+        if jamiBenzin < jamiMasofa {
+            return -1
+        }
+        
+        return boshlanishIndeksi
+    }
+}
+
+// Kiritmalarni kod ichida belgilash
+let stansiyalar = [
+    benzinStansiyasi(benzin: 5, masofa: 4),
+    benzinStansiyasi(benzin: 4, masofa: 5),
+    benzinStansiyasi(benzin: 7, masofa: 5),
+    benzinStansiyasi(benzin: 8, masofa: 5)
+]
+
+// Aylana classidan foydalanib, boshlanish indeksini topamiz
+let sayohat = Aylana(stansiyalar: stansiyalar)
+let natija = sayohat.boshlanishIndeksiniTopish()
+
+// Natijani chop etamiz
+if natija == -1 {
+    print("Muvaffaqiyatli boshlanish uchun hech qanday imkoniyat yo'q.")
+} else {
+    print("Birinchi muvaffaqiyatli boshlanish indeksi: \(natija)")
+}
