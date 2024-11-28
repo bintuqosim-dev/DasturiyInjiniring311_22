@@ -1,0 +1,56 @@
+import requests
+import asyncio
+import aiohttp
+import time
+import nest_asyncio
+
+# Mavjud event loop'ni yangilash
+nest_asyncio.apply()
+
+# Sinxron yondashuv
+def synchronous_download(urls):
+    results = []
+    for url in urls:
+        response = requests.get(url)
+        results.append(response.text)
+    return results
+
+# Asinxron yondashuv
+async def async_download(urls):
+    async with aiohttp.ClientSession() as session:
+        tasks = [fetch(session, url) for url in urls]
+        return await asyncio.gather(*tasks)
+
+async def fetch(session, url):
+    async with session.get(url) as response:
+        return await response.text()
+
+if __name__ == "__main__":
+    urls = [
+        "https://jsonplaceholder.typicode.com/posts/1",
+        "https://jsonplaceholder.typicode.com/posts/2",
+        "https://jsonplaceholder.typicode.com/posts/3",
+    ]
+
+    # Sinxron bajarish
+    start_time = time.time()
+    sync_results = synchronous_download(urls)
+    sync_duration = time.time() - start_time
+    print(f"Sinxron bajarish vaqti: {sync_duration:.2f} soniya")
+
+    # Asinxron bajarish
+    start_time = time.time()
+    async_results = asyncio.run(async_download(urls))
+    async_duration = time.time() - start_time
+    print(f"Asinxron bajarish vaqti: {async_duration:.2f} soniya")
+
+    # Natijalarni yozish
+    with open("sync_results.txt", "w") as sync_file:
+        for result in sync_results:
+            sync_file.write(result + "\n")
+
+    with open("async_results.txt", "w") as async_file:
+        for result in async_results:
+            async_file.write(result + "\n")
+
+    print("Natijalar fayllarga saqlandi!")
